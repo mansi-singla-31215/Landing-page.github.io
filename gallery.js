@@ -1,121 +1,103 @@
-body {
-    background: #FFF5EE;
-}
-.gallery {
-    position: absolute;
-    /*top: 95vw;*/
-    top:100vw;
-    left: 50%;
-    padding: 20px;
-    max-width: 100%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    border: 1px solid #DE5D83;
-    overflow: hidden;
-}
-.gallery .inner {
-    position: relative;
-    overflow: hidden;
-    display: block;
-    width: auto; 
-    max-width: 70vw; /*box width*/
+// Fit inner div to gallery
+$('<div />', { 'class': 'inner'  }).appendTo('.gallery');
 
-}
-.gallery img {
-    display: none;
-}
-.main {    /*image display size*/
-    position: relative;
-    width: 100%;
-    height: 40vw;
-    overflow: hidden;
-    background: #FFF5EE;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-.main:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
+// Create main image block and apply first img to it
+var imageSrc1 = $('.gallery').children('img').eq(0).attr('src');
+$('<div />', { 'class': 'main'  }).appendTo('.gallery .inner').css('background-image', 'url(' + imageSrc1 + ')');
+
+// Create image number label
+var noOfImages = $('.gallery').children('img').length;
+$('<span />').appendTo('.gallery .inner .main').html('Image 1 of ' + noOfImages);
+
+// Create thumb roll
+$('<div />', { 'class': 'thumb-roll'  }).appendTo('.gallery .inner');
+
+// Create thumbail block for each image inside thumb-roll
+$('.gallery').children('img').each( function() {
+	var imageSrc = $(this).attr('src');
+	$('<div />', { 'class': 'thumb'  }).appendTo('.gallery .inner .thumb-roll').css('background-image', 'url(' + imageSrc + ')');
+});
+
+// Make first thumbnail selected by default
+$('.thumb').eq(0).addClass('current');
+
+// Select thumbnail function
+$('.thumb').click(function() {
+	
+	// Make clicked thumbnail selected
+	$('.thumb').removeClass('current');
+	$(this).addClass('current');
+	
+	// Apply chosen image to main
+	var imageSrc = $(this).css('background-image');
+	$('.main').css('background-image', imageSrc);
+	$('.main').addClass('main-selected');
+	setTimeout(function() {
+		$('.main').removeClass('main-selected');
+	}, 500);
+	
+	// Change text to show current image number
+	var imageIndex = $(this).index();
+	$('.gallery .inner .main span').html('Image ' + (imageIndex + 1) + ' of ' + noOfImages);
+});
+
+// Arrow key control function
+$(document).keyup(function(e) {
+
+  // If right arrow
+  if (e.keyCode === 39) {
+
+	// Mark current thumbnail
+	var currentThumb = $('.thumb.current');
+	var currentThumbIndex = currentThumb.index();
+	if ( (currentThumbIndex+1) >= noOfImages) { // if on last image
+		nextThumbIndex = 0; // ...loop back to first image
+	} else {
+		nextThumbIndex = currentThumbIndex+1;
+	}
+	var nextThumb = $('.thumb').eq(nextThumbIndex);
+	currentThumb.removeClass('current');
+	nextThumb.addClass('current');
+	
+	// Switch main image
+	var imageSrc = nextThumb.css('background-image');
+	$('.main').css('background-image', imageSrc);
+	$('.main').addClass('main-selected');
+	setTimeout(function() {
+		$('.main').removeClass('main-selected');
+	}, 500);
+	
+	// Change text to show current image number
+	$('.gallery .inner .main span').html('Image ' + (nextThumbIndex+1) + ' of ' + noOfImages);
+	
+  }
+  
+  // If left arrow
+  if (e.keyCode === 37) { 
+
+	// Mark current thumbnail
+	var currentThumb = $('.thumb.current');
+	var currentThumbIndex = currentThumb.index();
+	if ( currentThumbIndex == 0) { // if on first image
+		prevThumbIndex = noOfImages-1; // ...loop back to last image
+	} else {
+		prevThumbIndex = currentThumbIndex-1;
+	}
+	var prevThumb = $('.thumb').eq(prevThumbIndex);
+	currentThumb.removeClass('current');
+	prevThumb.addClass('current');
+	
+	// Switch main image
+	var imageSrc = prevThumb.css('background-image');
+	$('.main').css('background-image', imageSrc);
+	$('.main').addClass('main-selected');
+	setTimeout(function() {
+		$('.main').removeClass('main-selected');
+	}, 500);
+	
+	// Change text to show current image number
+	$('.gallery .inner .main span').html('Image ' + (prevThumbIndex+1) + ' of ' + noOfImages);
+	
+  }
     
-    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
-    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 100%);
-    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
-}
-.main-selected {
-    animation: crossfade 0.5s ease;
-    -webkit-animation: crossfade 0.5s ease;
-    -moz-animation: crossfade 0.5s ease;
-}
-@keyframes crossfade {
-    0% { opacity: 0.7; }
-    100% { opacity: 1; }
-}
-    
-@-webkit-keyframes crossfade {
-    0% { opacity: 0.7; }
-    100% { opacity: 1; }
-}
-    
-@-moz-keyframes crossfade {
-    0% { opacity: 0.7; }
-    100% { opacity: 1; }
-}
-.main span {
-    position: absolute;
-    display: block;
-    text-align: center;
-    font-size: 16px;
-    font-family: sans-serif;
-    color: #fff;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-}
-.thumb-roll {
-    position: relative;
-    width: auto;
-    overflow-x: auto;
-    overflow-y: hidden;	
-    white-space: nowrap;
-}
-.thumb {   /*images*/
-    display: inline-block;
-    position: relative;
-    width: 10vw;
-    height: 10vw;
-    margin-right: 20px;
-    background: #ccc;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    overflow: hidden;
-    cursor: pointer;
-}
-.thumb:last-of-type {
-    margin-right: 0px;
-}
-.thumb:after { /*rectangle*/
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-shadow: inset 5px 5px 0px rgba(51, 204, 255, 0), inset -5px -5px 0px rgba(51, 204, 255, 0);
-}
-.thumb.current:after {
-    box-shadow: inset 5px 5px 0px #DE5D83, inset -5px -5px 0px #DE5D83;
-    background: rgba(255,255,255,0.4);
-    cursor: default;
-}
-.thumb:hover:after {
-    box-shadow: inset 5px 5px 0px #DE5D83, inset -5px -5px 0px #DE5D83;
-}
+});
