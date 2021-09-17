@@ -1,0 +1,201 @@
+/*BACKGROUND*/
+.section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top:-8px;
+    /*margin-left:-1px;*/
+}
+
+.section h2{
+    text-align: center;
+    font-size: 3vw;
+    padding: 0px;
+   /* margin-top:-3vw;
+    margin-left:-1vw;*/
+    /*margin: 5vw; /*15px*/
+    z-index: 1;
+} 
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(45deg, #FFF5EE 50%, #FFF5EE 50%);
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.5;
+}
+
+
+/*
+	@media only screen and (max-width: 768px)
+	{
+    .bg-video-wrap { 
+        width:50vw;
+        height: 100%;
+    }
+} */
+	
+
+.bg-video-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+	height:100vh;
+  /*  background-color: #DE5D83;*/
+}  
+
+
+
+/*HEADING*/
+@font-face {
+	src: url('https://res.cloudinary.com/dr6lvwubh/raw/upload/v1529908256/CompressaPRO-GX.woff2');
+	font-family:'Compressa VF';
+	/*font-style: normal; */
+}
+
+html {
+	height:100vh;
+	overflow-x:hidden;
+}
+
+#main{   
+   /*bottom: 15%;*/
+	/*padding: 0;*/
+/*	margin: 0 auto;*/
+	overflow: hidden;
+ /* background-color: #FFF5EE;*/
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	height: 100vw;
+	align-items: center;
+}
+
+h2 {
+  /*background-color: #DE5D83;*/
+  /*background: linear-gradient(to right top, rgba(255, 255, 255, 0.4),#DE5D83);  */     
+  text-shadow: 4px 4px black;
+  border-radius: 2rem;
+  /*opacity:0.7;*/
+  font-weight: 1000;
+	font-family:'Compressa VF';
+	text-rendering: optimizeSpeed;         
+	color: #DE5D83;
+	user-select: none;
+	line-height: 40vw;  /*h1 entire box*/
+	margin: 0 auto;
+	text-transform: uppercase;
+	text-align: center;
+	width: 100vw;  /*width of text*/
+}
+
+span {
+    margin: auto;
+    font-size: 14vw;
+  } 
+  
+h2 span {
+	transform: translateY(-1vw);
+	user-select: none;
+}
+
+h2.flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+h2.stroke span {
+	position: relative;
+	color: #DE5D83;
+	line-height: inherit;
+}
+h2.stroke span:after {
+	content: attr(data-char);
+	-webkit-text-stroke-width: 3px;
+	-webkit-text-stroke-color: #DE5D83;
+	position: absolute;
+	left: 0;
+	line-height: inherit;
+	color: transparent;
+	z-index: -1;
+} 
+
+
+
+/*ABOUT US*/
+/*
+.patterns {
+  height: 80vw;
+  width:50vw;
+  padding: 0px;
+} */
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  #gap::before {
+    content: "\a\a\a\a\a\a\a";
+    white-space: pre;
+  }
+}
+
+/*@media only screen and (max-width: 900px) {
+  /* For mobile phones: */
+  /*.gallery {
+    position:fixed;
+    height:80vw;
+  }
+
+}*/
+
+
+
+svg text {
+  font-family: Lora;
+  letter-spacing: 10px;
+  stroke: #DE5D83; 
+  font-size: 10vw;
+  font-weight: 700;
+  stroke-width: 3;
+  margin:0;
+  padding:0;
+  /*
+  position: relative;
+    left:8vw; 
+    width: 10vw;
+    height: 8vw;
+    top:1vw; */
+  animation: textAnimate 5s infinite alternate;
+  
+}
+
+@keyframes textAnimate {
+  0% {
+    stroke-dasharray: 0 50%;
+    stroke-dashoffset:  20%;
+    fill:#ffbad0;
+
+  }
+
+  100%
+ {
+    stroke-dasharray: 50% 0;
+    stroke-dashoffset: -20%;
+    fill: #e90080;
+  }
+  
+}
+
+  /*paragraph*/
+  .para{
+    color: #DE5D83;
+    font-size: 2vw;
+    text-shadow: 4px 4px #ffffff;
+	margin-left:3vh;
+  }
