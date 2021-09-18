@@ -70,7 +70,7 @@ html {
    /*bottom: 15%;*/
 	/*padding: 0;*/
 /*	margin: 0 auto;*/
-	overflow: hidden;
+/* 	overflow: hidden; */
  /* background-color: #FFF5EE;*/
 	background-color: transparent;
 	display: flex;
@@ -94,7 +94,7 @@ h2 {
 	margin: 0 auto;
 	text-transform: uppercase;
 	text-align: center;
-	width: 100vw;  /*width of text*/
+	width: 80vw;  /*width of text*/
 }
 
 span {
