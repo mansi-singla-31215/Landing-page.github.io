@@ -387,10 +387,11 @@ header .nav nav.open .showcase {
   animation-name: slideInDown;
 }
 .content {
-  position: relative;
+    position: relative;
   flex: 1;
-  padding: 80px 40px 40px;
-  background-color: white;
+  padding: 70px 40px 40px;
+  /*background-color: white;*/
+  
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -690,7 +691,7 @@ body-footer {
   }
 
   .content{
-    padding: 0%;
+    /*padding: 0%;*/
     height: 80px;
   }
 }
