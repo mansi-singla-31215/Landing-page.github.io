@@ -4,7 +4,7 @@ body {
 .gallery {
     position: absolute;
     /*top: 95vw;*/
-    top:100vw;
+    /*top:100vw;*/
     left: 50%;
     padding: 20px;
     max-width: 100%;
@@ -14,6 +14,14 @@ body {
     border: 1px solid #DE5D83;
     overflow: hidden;
 }
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .thumbnail {
+    top:10vw;
+  }
+}
+
 .gallery .inner {
     position: relative;
     overflow: hidden;
@@ -79,6 +87,11 @@ body {
     bottom: 10px;
     left: 0;
     right: 0;
+}
+
+.thumbnail{
+    position:relative;
+    top:25vw;
 }
 .thumb-roll {
     position: relative;
