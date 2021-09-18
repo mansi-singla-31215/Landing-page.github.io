@@ -18,7 +18,7 @@
    /* margin-top:-3vw;
     margin-left:-1vw;*/
     /*margin: 5vw; /*15px*/
-    z-index: 1;
+    z-index: -1;
 } 
 
 .overlay {
@@ -49,6 +49,7 @@
     width: 100vw;
 	height:100vh;
   /*  background-color: #DE5D83;*/
+  z-index:-2;
 }  
 
 
